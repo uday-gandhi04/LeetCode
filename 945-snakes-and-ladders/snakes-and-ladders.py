@@ -18,8 +18,6 @@ class Solution(object):
                 else:
                     arr.append(board[i][-j-1])
 
-        print(arr)
-
         while queue:
             sz=len(queue)
             while sz:
