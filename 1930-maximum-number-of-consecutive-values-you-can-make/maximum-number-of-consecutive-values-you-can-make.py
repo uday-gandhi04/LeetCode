@@ -5,8 +5,6 @@ class Solution(object):
         :rtype: int
         """
         coins.sort()
-
-        out=1
         x=0
 
         for i in range(len(coins)):
