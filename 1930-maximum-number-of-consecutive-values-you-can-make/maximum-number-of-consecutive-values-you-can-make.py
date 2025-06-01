@@ -9,7 +9,7 @@ class Solution(object):
 
         for i in range(len(coins)):
             if coins[i]<=x+1:
-                x=coins[i]+x
+                x+=coins[i]
             else:
                 break
         return x+1
