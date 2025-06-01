@@ -5,14 +5,14 @@ class Solution(object):
         :rtype: int
         """
         coins.sort()
-        x=0
+        x=1
 
         for i in range(len(coins)):
-            if coins[i]<=x+1:
+            if coins[i]<=x:
                 x+=coins[i]
             else:
                 break
-        return x+1
+        return x
 
 
         
