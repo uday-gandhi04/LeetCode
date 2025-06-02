@@ -14,7 +14,5 @@ class Solution(object):
             if ratings[i+1]<ratings[i] and arr[i+1]>=arr[i]:
                 arr[i]=arr[i+1]+1
         
-        print(arr)
-        
         return sum(arr)
         
