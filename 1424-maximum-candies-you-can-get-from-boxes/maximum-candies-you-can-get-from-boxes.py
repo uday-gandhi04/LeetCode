@@ -20,9 +20,7 @@ class Solution(object):
                 que.append(initialBoxes[i])
             else:
                 boxes.add(initialBoxes[i])
-        for i in range(n):
-            if status[i]==1:
-                keysFound.add(i)
+
         out=0
         while que:
             currBox=que.popleft()
@@ -31,18 +29,19 @@ class Solution(object):
                 continue
             visited.add(currBox)
 
-            box=containedBoxes[currBox]
-            k=keys[currBox]
+            keysFound.update(keys[currBox])
 
-            for i in range(len(k)):
-                keysFound.add(k[i])
-            for i in range(len(box)):
-                boxes.add(box[i])
+            for c in containedBoxes[currBox]:
+                if status[c]==1 or c in keysFound:
+                    que.append(c)
+                else:
+                    boxes.add(c)
             out+=candies[currBox]
 
-            for i in keysFound:
-                if i in boxes:
-                    que.append(i)
+            openBox=boxes & keysFound
+            que.extend(openBox)
+            boxes-=openBox
+            keysFound-=openBox
 
         return out
 
