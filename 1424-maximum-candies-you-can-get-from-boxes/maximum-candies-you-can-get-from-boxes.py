@@ -38,9 +38,7 @@ class Solution(object):
                 keysFound.add(k[i])
             for i in range(len(box)):
                 boxes.add(box[i])
-            #print(currBox,keysFound,boxes)
             out+=candies[currBox]
-            candies[currBox]=0
 
             for i in keysFound:
                 if i in boxes:
