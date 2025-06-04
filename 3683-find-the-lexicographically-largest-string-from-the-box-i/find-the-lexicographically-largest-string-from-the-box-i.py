@@ -16,12 +16,7 @@ class Solution(object):
             if word[i]==x:
                 arr.append(i)
         window=n-k+1
-        while window>0:
-            for i in arr:
-                out=max(out,word[i:i+window])
-            if out==temp:
-                return out
-            temp=out
 
-
+        for i in arr:
+            out=max(out,word[i:i+window])
         return out
