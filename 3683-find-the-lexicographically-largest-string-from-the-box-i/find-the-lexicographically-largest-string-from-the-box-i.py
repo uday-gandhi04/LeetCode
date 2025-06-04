@@ -8,7 +8,7 @@ class Solution(object):
         if k==1:
             return word
         n=len(word)
-        x=sorted(word)[-1]
+        x=max(word)
         out=""
         arr=[]
         temp=out
@@ -16,7 +16,6 @@ class Solution(object):
             if word[i]==x:
                 arr.append(i)
         window=n-k+1
-
         for i in arr:
             out=max(out,word[i:i+window])
         return out
