@@ -8,7 +8,7 @@ class Solution(object):
 
         freq=Counter(s)
         stack=[]
-        p=""
+        p=[]
 
         def minchar():
             for i in range(26):
@@ -21,9 +21,9 @@ class Solution(object):
             stack.append(i)
             freq[i]-=1
             while stack and stack[-1]<=minchar():
-                p+=stack.pop()
+                p.append(stack.pop())
         
         while stack:
-            p+=stack.pop()
+            p.append(stack.pop())
         
-        return p
+        return "".join(p)
