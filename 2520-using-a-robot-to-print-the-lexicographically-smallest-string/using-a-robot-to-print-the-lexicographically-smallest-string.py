@@ -1,29 +1,28 @@
+from collections import Counter
+
 class Solution(object):
     def robotWithString(self, s):
-        """
-        :type s: str
-        :rtype: str
-        """
-        from collections import Counter
+        freq = Counter(s)
+        stack = []
+        result = []
 
-        freq=Counter(s)
-        stack=[]
-        p=[]
+        # Start tracking from 'a'
+        min_ord = ord('a')
 
-        def minchar(freq):
-            for i in range(26):
-                idx=chr(ord('a')+i)
-                if freq[idx]>0:
-                    return idx
-            return 'a'
+        for c in s:
+            stack.append(c)
+            freq[c] -= 1
 
-        for i in s:
-            stack.append(i)
-            freq[i]-=1
-            while stack and stack[-1]<=minchar(freq):
-                p.append(stack.pop())
-        
+            # Move min_ord forward if that char is not present in freq anymore
+            while min_ord <= ord('z') and freq[chr(min_ord)] == 0:
+                min_ord += 1
+
+            # Pop from stack if it's <= the current minimum char left
+            while stack and ord(stack[-1]) <= min_ord:
+                result.append(stack.pop())
+
+        # Add remaining stack elements
         while stack:
-            p.append(stack.pop())
-        
-        return "".join(p)
+            result.append(stack.pop())
+
+        return "".join(result)
