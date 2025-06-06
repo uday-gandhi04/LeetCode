@@ -10,17 +10,17 @@ class Solution(object):
         stack=[]
         p=[]
 
-        def minchar():
+        def minchar(freq):
             for i in range(26):
                 idx=chr(ord('a')+i)
-                if freq[idx]!=0:
+                if freq[idx]>0:
                     return idx
             return 'a'
 
         for i in s:
             stack.append(i)
             freq[i]-=1
-            while stack and stack[-1]<=minchar():
+            while stack and stack[-1]<=minchar(freq):
                 p.append(stack.pop())
         
         while stack:
