@@ -6,16 +6,20 @@ class Solution(object):
         """
         out=[]
 
-        def dfs(curr,n):
-            if curr>n:
-                return 
-
+        def dfs(curr):
             out.append(curr)            
             for i in range(10):
-                dfs(curr*10+i,n)
+                nxt=curr*10+i
+                if nxt<=n:
+                    dfs(nxt)
+                else:
+                    return 
             return 
         
-        for i in range(9):
-            dfs(i+1,n)
+        for i in range(1,10):
+            if i<=n:
+                dfs(i)
+            else:
+                break
 
         return out
