@@ -30,7 +30,6 @@ class Solution(object):
                 if not check(i):
                     continue
                 backtrack(i+1)
-                arr[i]=-1
             return 
 
         
