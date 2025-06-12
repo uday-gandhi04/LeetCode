@@ -18,8 +18,9 @@ class Solution(object):
             if i==n:
                 temp=[]
                 for j in range(n):
-                    s=('.'*(arr[j]))+'Q'+('.'*(n-arr[j]-1))
-                    temp.append(s)
+                    s=['.']*n
+                    s[arr[j]]='Q'
+                    temp.append("".join(s))
                 out.append(temp)
                 
                 return
