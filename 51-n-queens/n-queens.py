@@ -5,7 +5,6 @@ class Solution(object):
         :rtype: List[List[str]]
         """
         arr=[-1]*n
-        self.flag=False
         def check(idx):
             curr=arr[idx]
             for i in range(idx):
@@ -31,6 +30,7 @@ class Solution(object):
                     continue
                 backtrack(i+1)
                 arr[i]=-1
+            return 
 
         
         backtrack(0)
