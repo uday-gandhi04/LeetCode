@@ -1,27 +1,22 @@
 class Solution:
     def minimizeMax(self, nums, p):
-        nums.sort()
+        nums = sorted(nums)
         n = len(nums)
-        
-        # Find the number of valid pairs by greedy approach
-        def countValidPairs(threshold):
-            index, count = 0, 0
-            while index < n - 1:
-                # If a valid pair is found, skip both numbers.
-                if nums[index + 1] - nums[index] <= threshold:
-                    count += 1
-                    index += 1
-                index += 1
-            return count
-        
-        left, right = 0, nums[-1] - nums[0]
-        while left < right:
-            mid = left + (right - left) // 2
+        r = (nums[-1] - nums[0])
+        l = 0
 
-            # If there are enough pairs, look for a smaller threshold.
-            # Otherwise, look for a larger threshold.
-            if countValidPairs(mid) >= p:
-                right = mid
+        while(l < r):
+            mid = (l+r)//2
+            curr = 0
+            i = 1
+            while i < n:
+                if nums[i]-nums[i-1] <= mid:
+                    curr += 1
+                    i += 1     
+                i += 1
+            if curr >= p:
+                r = mid
             else:
-                left = mid + 1
-        return left       
+                l = mid + 1
+
+        return l
