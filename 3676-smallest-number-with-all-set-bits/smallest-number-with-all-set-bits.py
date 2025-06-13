@@ -4,8 +4,6 @@ class Solution(object):
         :type n: int
         :rtype: int
         """
-        i=0
-        while True:
-            if pow(2,i)>n:
-                return pow(2,i)-1
-            i+=1
+        base = int(math.log(n,2))+1
+        return 2**base -1
+        
