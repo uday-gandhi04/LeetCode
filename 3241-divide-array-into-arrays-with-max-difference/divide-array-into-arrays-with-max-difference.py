@@ -13,6 +13,8 @@ class Solution(object):
         for i in nums:
             temp.append(i)
             if len(temp)==3:
+                if temp[-1]-temp[0]>k:
+                    return []
                 out.append(temp)
                 temp=[]
         
