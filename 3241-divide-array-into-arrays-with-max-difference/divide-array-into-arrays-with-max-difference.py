@@ -11,14 +11,9 @@ class Solution(object):
         temp=[]
 
         for i in range(0,len(nums),3):
-            temp.extend([nums[i],nums[i+1],nums[i+2]])
-            if temp[-1]-temp[0]>k:
+            if nums[i+2]-nums[i]>k:
                 return []
-            out.append(temp)
-            temp=[]
+            out.append([nums[i],nums[i+1],nums[i+2]])
         
-        for i in out:
-            if i[-1]-i[0]>k:
-                return []
         
         return out
