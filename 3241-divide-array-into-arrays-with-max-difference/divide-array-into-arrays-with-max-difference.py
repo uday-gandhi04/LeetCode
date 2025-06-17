@@ -14,6 +14,5 @@ class Solution(object):
             if nums[i+2]-nums[i]>k:
                 return []
             out.append([nums[i],nums[i+1],nums[i+2]])
-        
-        
+
         return out
