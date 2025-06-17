@@ -8,8 +8,6 @@ class Solution(object):
         nums.sort()
         out=[]
 
-        temp=[]
-
         for i in range(0,len(nums),3):
             if nums[i+2]-nums[i]>k:
                 return []
