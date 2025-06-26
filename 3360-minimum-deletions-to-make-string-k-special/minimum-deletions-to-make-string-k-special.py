@@ -9,7 +9,6 @@ class Solution(object):
         freq = Counter(word)
         sorted_items_asc=sorted(freq.items(),key=lambda x: x[1])
         freq=dict(sorted_items_asc)
-        n=len(freq)
         out=float('inf')
         temp=0
         for i in freq.keys():
