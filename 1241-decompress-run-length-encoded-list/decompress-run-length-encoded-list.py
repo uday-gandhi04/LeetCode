@@ -5,12 +5,8 @@ class Solution(object):
         :rtype: List[int]
         """
         out=[]
-        n=len(nums)
 
-        for i in range(0,n,2):
-            freq=nums[i]
-            val=nums[i+1]
-            for j in range(freq):
-                out.append(val)
+        for i in range(0,len(nums),2):
+            out.extend([nums[i+1]]*nums[i])
         return out
         
