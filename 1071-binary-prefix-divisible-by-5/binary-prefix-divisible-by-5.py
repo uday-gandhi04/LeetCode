@@ -6,12 +6,9 @@ class Solution(object):
         """
         out=[]
         x=0
-        for i in range(len(nums)):
-            x=2*x+nums[i]
-            if x%5==0:
-                out.append(True)
-            else:
-                out.append(False)
+        for bit in nums:
+            x=2*x+bit
+            out.append(x%5==0)
         return out
 
 
