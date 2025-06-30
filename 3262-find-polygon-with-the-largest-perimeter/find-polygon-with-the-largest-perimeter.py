@@ -7,7 +7,6 @@ class Solution(object):
         nums.sort()
         n=len(nums)
         prefix=[0]*(n+1)
-        [1,1,2,3,5,12,50]
 
         for i in range(n):
             prefix[i+1]=prefix[i]+nums[i]
