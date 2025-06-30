@@ -5,17 +5,14 @@ class Solution(object):
         :rtype: List[int]
         """
         n=len(nums)
-        leftSum=[0]*n
-        rightSum=[0]*n
-
-        for i in range(1,n):
-            leftSum[i]=leftSum[i-1]+nums[i-1]
-            rightSum[n-i-1]=rightSum[n-i]+nums[n-i]
-        
+        right=sum(nums)
+        left=0
         out=[]
-
         for i in range(n):
-            out.append(abs(leftSum[i]-rightSum[i]))
+            right-=nums[i]
+            out.append(abs(right-left))
+            left+=nums[i]
+
 
         return out
 
