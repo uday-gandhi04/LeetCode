@@ -7,49 +7,55 @@ class FindSumPairs(object):
         """
         self.nums1=nums1
         self.nums2=nums2
-        self.dic_nums1={}
-        self.dic_nums2={}
+        self.cach1={}
+        self.cach2={}
 
-        """for i,num in enumerate(nums1):
-            if num in self.dic_nums1:
-                self.dic_nums1[num]=[i]
-            else:
-                self.dic_nums1[num].append(i)"""
-            
-        for i,num in enumerate(nums2):
-            if num in self.dic_nums2:
-                self.dic_nums2[num].append(i)     
-            else:
-                self.dic_nums2[num]=[i]
+        for num in nums1:
+            if num not in self.cach1:
+                self.cach1[num]=0
+            self.cach1[num]+=1
+        
+        for num in nums2:
+            if num not in self.cach2:
+                self.cach2[num]=0
+            self.cach2[num]+=1
+        
 
-    def add(self, ix, val):
+    def add(self, index, val):
         """
         :type index: int
         :type val: int
         :rtype: None
         """
-        self.dic_nums2[self.nums2[ix]].pop(self.dic_nums2[self.nums2[ix]].index(ix))
-        if not self.dic_nums2[self.nums2[ix]]:
-            self.dic_nums2.pop(self.nums2[ix])
+        value=self.nums2[index]
+        self.cach2[value]-=1
 
-        self.nums2[ix]+=val
-        if self.nums2[ix] in self.dic_nums2:
-            self.dic_nums2[self.nums2[ix]].append(ix)
+        if self.cach2[value]==0:
+            del self.cach2[value]
+
+        new=val+value
+        self.nums2[index]=new
+        if new not in self.cach2:
+            self.cach2[new]=1
         else:
-            self.dic_nums2[self.nums2[ix]]=[ix]
+            self.cach2[new]+=1
+        
 
     def count(self, tot):
         """
         :type tot: int
         :rtype: int
         """
-        out=0
-        for num in self.nums1:
-            target=tot-num
+        res=0
+        for key in self.cach1:
+            if tot-key in self.cach2:
+                val=tot-key
+                res+= self.cach1[key] * self.cach2[val]
+        
+        return res
 
-            if target in self.dic_nums2:
-                out+=len(self.dic_nums2[target])
-        return out
+        
+
 
 # Your FindSumPairs object will be instantiated and called as such:
 # obj = FindSumPairs(nums1, nums2)
