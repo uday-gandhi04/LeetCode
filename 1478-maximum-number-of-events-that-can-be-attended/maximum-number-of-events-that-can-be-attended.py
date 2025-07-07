@@ -1,19 +1,31 @@
 class Solution(object):
-    import heapq
     def maxEvents(self, events):
-        n = len(events)
-        max_day = max(event[1] for event in events)
-        events.sort()
-        pq = []
-        ans, j = 0, 0
-        for i in range(1, max_day + 1):
-            while j < n and events[j][0] <= i:
-                heapq.heappush(pq, events[j][1])
-                j += 1
-            while pq and pq[0] < i:
-                heapq.heappop(pq)
-            if pq:
-                heapq.heappop(pq)
-                ans += 1
+        """
+        :type events: List[List[int]]
+        :rtype: int
+        """
+        events = sorted(events, key = lambda x: (x[0], x[1]))
+        curr_day = events[0][0]
+        event_id = 0
+        event_cnt = 0
+        h = []
+        while event_id < len(events):
+            if curr_day >= events[event_id][0]:
+                heappush(h, (events[event_id][1], event_id))
+                event_id += 1
+            else:
+                if h:
+                    event_end, x = heappop(h)
+                    if curr_day <= event_end:
+                        event_cnt += 1
+                        curr_day += 1
+                else:
+                    curr_day = events[event_id][0]
+        while h: 
+            event_end, x = heappop(h)
+            if curr_day <= event_end:
+                event_cnt += 1
+                curr_day += 1
 
-        return ans
+            
+        return event_cnt         
