@@ -14,7 +14,6 @@ class Solution(object):
             freeTime.append(temp)
         
         freeTime.append(eventTime-endTime[-1])
-        print(freeTime)
         m=len(freeTime)
         wind=min(k+1,m)
         summ=sum(freeTime[0:wind])
