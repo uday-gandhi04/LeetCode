@@ -5,17 +5,16 @@ class Solution(object):
         :type trainers: List[int]
         :rtype: int
         """
-        players.sort()
-        trainers.sort()
+        players.sort(reverse=True)
+        trainers.sort(reverse=True)
         n=len(trainers)
         i=0
         out=0
         for p in players:
-            while i<n:
-                if trainers[i]>=p:
-                    out+=1
-                    i+=1
-                    break
+            if i==n:
+                break
+            if p<=trainers[i]:
+                out+=1
                 i+=1
         return out
 
