@@ -4,7 +4,7 @@ class Solution(object):
         :type folder: List[str]
         :rtype: List[str]
         """
-        folder.sort(key=lambda x:len(x))
+        folder.sort()
         folders=set()
         out=[]
         for f in folder:
