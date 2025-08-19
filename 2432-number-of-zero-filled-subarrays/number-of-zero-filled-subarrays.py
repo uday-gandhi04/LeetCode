@@ -5,7 +5,6 @@ class Solution(object):
         :rtype: int
         """
 
-        arr=[]
         i=0
         count=0
         out=0
