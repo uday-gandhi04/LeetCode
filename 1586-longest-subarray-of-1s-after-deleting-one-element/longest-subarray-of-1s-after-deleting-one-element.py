@@ -27,7 +27,6 @@ class Solution(object):
                     count-=1     
                 i+=1
                 noZero-=1
-            print(i,j,count)
             j+=1
         
         out=max(out,count)
