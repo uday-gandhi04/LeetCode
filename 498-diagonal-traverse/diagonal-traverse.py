@@ -7,7 +7,6 @@ class Solution(object):
         n=max(len(mat),len(mat[0]))
         arr=[[] for _ in range((2*n)-1)]
 
-        print(arr)
         for i in range(len(mat)):
             for j in range(len(mat[0])):
                 arr[i+j].append(mat[i][j])
