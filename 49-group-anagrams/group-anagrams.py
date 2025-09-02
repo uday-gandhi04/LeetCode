@@ -1,18 +1,18 @@
-class Solution(object):
-    def groupAnagrams(self, strs):
-        """
-        :type strs: List[str]
-        :rtype: List[List[str]]
-        """
-
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
         dic={}
 
-        for i in strs:
-            s=tuple(sorted(i))
-            if s not in dic:
-                dic[s]=[]
-            dic[s].append(i)
-        
-        return list(dic.values())
+        for s in strs:
+            a=''.join(sorted(s))
 
+            if a in dic:
+                dic[a].append(s)
+            else:
+                dic[a]=[s]
         
+        out=[]
+
+        for values in dic.values():
+            out.append(values)
+        
+        return out
