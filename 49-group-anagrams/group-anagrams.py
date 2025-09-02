@@ -10,9 +10,4 @@ class Solution:
             else:
                 dic[a]=[s]
         
-        out=[]
-
-        for values in dic.values():
-            out.append(values)
-        
-        return out
+        return list(dic.values())
