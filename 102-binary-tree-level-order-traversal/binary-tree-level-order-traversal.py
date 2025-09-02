@@ -1,26 +1,41 @@
 # Definition for a binary tree node.
-# class TreeNode:
+# class TreeNode(object):
 #     def __init__(self, val=0, left=None, right=None):
 #         self.val = val
 #         self.left = left
 #         self.right = right
-class Solution:
-    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+class Solution(object):
+    def levelOrder(self, root):
+        """
+        :type root: Optional[TreeNode]
+        :rtype: List[List[int]]
+        """
+        if not root:
+            return []
         out=[]
 
-        def bfs(root,depth):
-            if not root:
-                return
-            if len(out)>depth:
-                out[depth].append(root.val)
-            else:
-                out.append([root.val])
-            
-            bfs(root.left,depth+1)
-            bfs(root.right,depth+1)
+        bfs=[root]
+
+        out=[[root.val]]
+
+        while bfs:
+
+            level=[]
+            levelval=[]
+            n=len(bfs)
+            for i in range(n):
+                node=bfs.pop(0)
+                if node.left:
+                    level.append(node.left)
+                    levelval.append(node.left.val)
+                if node.right:
+                    level.append(node.right)
+                    levelval.append(node.right.val)
+            bfs=level
+            if levelval:
+                out.append(levelval)
         
-        bfs(root,0)
-    
+                
         return out
 
         
