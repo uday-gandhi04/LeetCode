@@ -22,9 +22,7 @@ class Solution(object):
 
             level=[]
             levelval=[]
-            n=len(bfs)
-            for i in range(n):
-                node=bfs.pop(0)
+            for node in bfs:
                 if node.left:
                     level.append(node.left)
                     levelval.append(node.left.val)
