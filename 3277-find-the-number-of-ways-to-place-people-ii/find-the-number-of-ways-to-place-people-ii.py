@@ -6,8 +6,6 @@ class Solution(object):
         """
 
         n=len(points)
-        if n<=1:
-            return 0
         points.sort(key=lambda x:(x[0],-x[1]))
         out=0
         
