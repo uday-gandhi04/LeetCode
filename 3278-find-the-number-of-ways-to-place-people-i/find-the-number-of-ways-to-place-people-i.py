@@ -4,16 +4,15 @@ class Solution(object):
         :type points: List[List[int]]
         :rtype: int
         """
+        n=len(points)
         points.sort(key=lambda x:(x[0],-x[1]))
         out=0
-
-        for p in range(1,len(points)):
-            for i in range(p-1,-1,-1):
-                if (points[i][0]<points[p][0] and points[i][1]>=points[p][1]) or points[i][0]==points[p][0] or points[i][1]==points[p][1]:
-                    for j in range(i+1,p):
-                        if points[i][0]<=points[j][0]<=points[p][0] and points[i][1]>=points[j][1]>=points[p][1]:
-                            break
-                    else:
-                        out+=1
-
+        
+        for i in xrange(n):
+            max_y=float('-inf')
+            for j in xrange(i+1,n):
+                if points[j][1]<=points[i][1] and  points[j][1]>max_y:
+                    out+=1
+                    max_y=points[j][1]
+        
         return out
