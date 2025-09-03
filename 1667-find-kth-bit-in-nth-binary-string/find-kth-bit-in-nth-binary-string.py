@@ -12,10 +12,10 @@ class Solution(object):
             for i in s:
                 out+= '1' if i=='0' else '0'
             
-            return out
+            return out[::-1]
 
         for i in range(1,n):
-            s=s[:]+'1'+invert(s)[::-1]
+            s=s[:]+'1'+invert(s)
             if len(s)>=k:
                 break
 
