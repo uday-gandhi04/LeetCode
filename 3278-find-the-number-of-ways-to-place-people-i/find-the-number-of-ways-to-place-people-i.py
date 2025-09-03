@@ -5,7 +5,6 @@ class Solution(object):
         :rtype: int
         """
         points.sort(key=lambda x:(x[0],-x[1]))
-        print(points)
         out=0
 
         for p in range(1,len(points)):
