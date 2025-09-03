@@ -11,7 +11,7 @@ class Solution(object):
         dic=defaultdict(int)
         dic[0]+=1
         out=0
-        for i,num in enumerate(nums):
+        for num in nums:
             x+=num
 
             if x-k in dic:
