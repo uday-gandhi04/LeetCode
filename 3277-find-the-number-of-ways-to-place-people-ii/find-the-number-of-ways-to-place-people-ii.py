@@ -4,9 +4,13 @@ class Solution(object):
         :type points: List[List[int]]
         :rtype: int
         """
+
+        n=len(points)
+        if n<=1:
+            return 0
         points.sort(key=lambda x:(x[0],-x[1]))
         out=0
-        n=len(points)
+        
         for i in range(n):
             max_y=float('-inf')
             for j in range(i+1,n):
