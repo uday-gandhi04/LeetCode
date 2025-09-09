@@ -5,9 +5,8 @@ class Solution(object):
         :rtype: List[int]
         """
         for i in range(1,n):
-            if '0' in str(i) or '0' in str(n-i):
-                continue
-            return i,n-i
+            if not('0' in str(i) or '0' in str(n-i)):
+                return i,n-i
 
 
 
