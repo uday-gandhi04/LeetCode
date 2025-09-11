@@ -4,7 +4,7 @@ class Solution(object):
         :type s: str
         :rtype: str
         """
-
+        s=list(s)
         vowels=[]
 
         v=set(['A','E','I','O','U','a','e','i','o','u'])
@@ -15,14 +15,11 @@ class Solution(object):
 
         vowels.sort()
         x=0
-        t=""
-        for ch in s:
-            if ch in v:
-                t+=vowels[x]
+        for i in range(len(s)):
+            if s[i] in v:
+                s[i]=vowels[x]
                 x+=1
-            else:
-                t+=ch
         
-        return t
+        return ''.join(s)
         
         
