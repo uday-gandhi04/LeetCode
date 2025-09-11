@@ -5,8 +5,6 @@ class Solution(object):
         :rtype: str
         """
 
-        from collections import deque
-
         vowels=[]
 
         v=set(['A','E','I','O','U','a','e','i','o','u'])
@@ -16,12 +14,12 @@ class Solution(object):
                 vowels.append(ch)
 
         vowels.sort()
-        vowels=deque(vowels)
-        
+        x=0
         t=""
         for ch in s:
             if ch in v:
-                t+=vowels.popleft()
+                t+=vowels[x]
+                x+=1
             else:
                 t+=ch
         
