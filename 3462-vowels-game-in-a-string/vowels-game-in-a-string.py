@@ -4,10 +4,9 @@ class Solution(object):
         :type s: str
         :rtype: bool
         """
-        vowels=set(['a','e','i','o','u'])
-        
-        for ch in s:
-            if ch in vowels:
+        vow=['a','e','i','o','u']
+
+        for v in vow:
+            if(v in s):
                 return True
         return False
-        
