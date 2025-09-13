@@ -1,22 +1,21 @@
+from collections import Counter
+
 class Solution(object):
     def maxFreqSum(self, s):
         """
         :type s: str
         :rtype: int
         """
-        from collections import defaultdict 
-        vow=dict.fromkeys(['a','e','i','o','u'],0)
+        vowels = set("aeiou")
+        freq = Counter(s)   # count frequency of each character
 
-        con=defaultdict(int)
-        maxcon=0
-        maxvow=0
-        for ch in s:
-            if ch in vow:
-                vow[ch]+=1
-                maxvow=max(maxvow,vow[ch])
+        max_vowel = 0
+        max_consonant = 0
+
+        for ch, count in freq.items():
+            if ch in vowels:
+                max_vowel = max(max_vowel, count)
             else:
-                con[ch]+=1
-                maxcon=max(maxcon,con[ch])
-        
-        return maxvow+maxcon
-                
+                max_consonant = max(max_consonant, count)
+
+        return max_vowel + max_consonant
