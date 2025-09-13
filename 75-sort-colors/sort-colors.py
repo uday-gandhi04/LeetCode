@@ -4,26 +4,22 @@ class Solution(object):
         :type nums: List[int]
         :rtype: None Do not return anything, modify nums in-place instead.
         """
-        r=0
-        w=0
-        b=0
-
-        for i in nums:
-            if i==0:
-                r+=1
-            elif i==1:
-                w+=1
-            else:
-                b+=1
+        n=len(nums)
+        p1=0
+        p2=n-1
+        i=0
         
-        for i in range(len(nums)):
-            if r>0:
-                nums[i]=0
-                r-=1
-            elif w>0:
-                nums[i]=1
-                w-=1
-            else:
-                nums[i]=2
-                b-=1
+        while i<=p2:
+            if nums[i]==0 and i!=p1:
+                nums[p1],nums[i]=nums[i],nums[p1]
+                p1+=1
+            elif nums[i]==2 and i!=p2:
+                nums[p2],nums[i]=nums[i],nums[p2]
+                p2-=1
+            else: 
+                i+=1
+
+
+
+                       
         
