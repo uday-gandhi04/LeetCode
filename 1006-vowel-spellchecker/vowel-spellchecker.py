@@ -31,17 +31,18 @@ class Solution(object):
 
         out=[]
         for querie in queries:
+            l=querie.lower()
             if querie in exact:
                 out.append(querie)
-            elif querie.lower() in Lower:
-                out.append(wordlist[Lower[querie.lower()]])
+            elif l in Lower:
+                out.append(wordlist[Lower[l]])
             else:
                 x=[]
-                for ch in querie:
+                for ch in l:
                     if ch in vow:
                         x.append('*')
                     else:
-                        x.append(ch.lower())
+                        x.append(ch)
                 x=''.join(x)
 
                 if x in Lower:
