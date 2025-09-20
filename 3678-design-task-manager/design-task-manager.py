@@ -1,29 +1,67 @@
 class TaskManager(object):
+
     def __init__(self, tasks):
-        self.heap = []
-        self.taskPriority = {}
-        self.taskOwner = {}
-        for t in tasks:
-            self.add(t[0], t[1], t[2])
+        """
+        :type tasks: List[List[int]]
+        """
+        self.dictTask={}
+        self.heap=[]
+
+        for userId,taskId,priority in tasks:
+            self.dictTask[taskId]=[priority,userId]       
+            heapq.heappush(self.heap,(-priority,-taskId)) 
 
     def add(self, userId, taskId, priority):
-        heapq.heappush(self.heap, (-priority, -taskId))
-        self.taskPriority[taskId] = priority
-        self.taskOwner[taskId] = userId
+        """
+        :type userId: int
+        :type taskId: int
+        :type priority: int
+        :rtype: None
+        """
+        self.dictTask[taskId]=[priority,userId]
+        heapq.heappush(self.heap,(-priority,-taskId))
 
     def edit(self, taskId, newPriority):
-        heapq.heappush(self.heap, (-newPriority, -taskId))
-        self.taskPriority[taskId] = newPriority
+        """
+        :type taskId: int
+        :type newPriority: int
+        :rtype: None
+        """
+        self.dictTask[taskId][0]=newPriority
+        heapq.heappush(self.heap,(-newPriority,-taskId))
+        
 
     def rmv(self, taskId):
-        self.taskPriority[taskId] = -1
+        """
+        :type taskId: int
+        :rtype: None
+        """
+        self.dictTask[taskId][0]=-1
+        
 
     def execTop(self):
-        while self.heap:
-            negp, negid = heapq.heappop(self.heap)
-            p = -negp
-            tid = -negid
-            if self.taskPriority.get(tid, -2) == p:
-                self.taskPriority[tid] = -1
-                return self.taskOwner.get(tid, -1)
-        return -1
+        """
+        :rtype: int
+        """
+        if not self.heap: 
+            return -1
+        out=heapq.heappop(self.heap)
+
+        while -out[0]!=self.dictTask[-out[1]][0]:
+            if not self.heap: 
+                return -1
+            out=heapq.heappop(self.heap)
+        
+        user=self.dictTask[-out[1]][1]
+        self.dictTask[-out[1]][0]=-1
+        
+        return user
+        
+
+
+# Your TaskManager object will be instantiated and called as such:
+# obj = TaskManager(tasks)
+# obj.add(userId,taskId,priority)
+# obj.edit(taskId,newPriority)
+# obj.rmv(taskId)
+# param_4 = obj.execTop()
