@@ -36,7 +36,7 @@ class TaskManager(object):
         :type taskId: int
         :rtype: None
         """
-        del self.dictTask[taskId]
+        self.dictTask[taskId][0]=-1
         
 
     def execTop(self):
@@ -47,13 +47,13 @@ class TaskManager(object):
             return -1
         out=heapq.heappop(self.heap)
 
-        while -out[1] not in self.dictTask or -out[0]!=self.dictTask[-out[1]][0]:
+        while -out[0]!=self.dictTask[-out[1]][0]:
             if not self.heap: 
                 return -1
             out=heapq.heappop(self.heap)
         
         user=self.dictTask[-out[1]][1]
-        del self.dictTask[-out[1]]
+        self.dictTask[-out[1]][0]=-1
         
         return user
         
