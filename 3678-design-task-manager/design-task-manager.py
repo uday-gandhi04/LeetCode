@@ -1,67 +1,52 @@
-class TaskManager(object):
+import heapq
 
+class TaskManager(object):
     def __init__(self, tasks):
         """
         :type tasks: List[List[int]]
         """
-        self.dictTask={}
-        self.heap=[]
+        self.dictTask = {}   # taskId -> [priority, userId]
+        self.heap = []       # stores (-priority, -taskId)
+        self.stale_count = 0 # number of stale heap entries
 
-        for userId,taskId,priority in tasks:
-            self.dictTask[taskId]=[priority,userId]       
-            heapq.heappush(self.heap,(-priority,-taskId)) 
+        for userId, taskId, priority in tasks:
+            self.dictTask[taskId] = [priority, userId]
+            heapq.heappush(self.heap, (-priority, -taskId))
 
     def add(self, userId, taskId, priority):
-        """
-        :type userId: int
-        :type taskId: int
-        :type priority: int
-        :rtype: None
-        """
-        self.dictTask[taskId]=[priority,userId]
-        heapq.heappush(self.heap,(-priority,-taskId))
+        self.dictTask[taskId] = [priority, userId]
+        heapq.heappush(self.heap, (-priority, -taskId))
+        self.stale_count += 1
+        if self.stale_count > len(self.heap) // 2:
+            self._rebuild_heap()
 
     def edit(self, taskId, newPriority):
-        """
-        :type taskId: int
-        :type newPriority: int
-        :rtype: None
-        """
-        self.dictTask[taskId][0]=newPriority
-        heapq.heappush(self.heap,(-newPriority,-taskId))
-        
+        if taskId in self.dictTask:
+            self.dictTask[taskId][0] = newPriority
+            heapq.heappush(self.heap, (-newPriority, -taskId))
+            self.stale_count += 1
+            if self.stale_count > len(self.heap) // 2:
+                self._rebuild_heap()
 
     def rmv(self, taskId):
-        """
-        :type taskId: int
-        :rtype: None
-        """
-        self.dictTask[taskId][0]=-1
-        
+        if taskId in self.dictTask:
+            self.dictTask[taskId][0] = -1
+            self.stale_count += 1
+            if self.stale_count > len(self.heap) // 2:
+                self._rebuild_heap()
 
     def execTop(self):
-        """
-        :rtype: int
-        """
-        if not self.heap: 
-            return -1
-        out=heapq.heappop(self.heap)
+        while self.heap:
+            priority, neg_tid = heapq.heappop(self.heap)
+            taskId = -neg_tid
+            if taskId in self.dictTask and self.dictTask[taskId][0] == -priority:
+                user = self.dictTask[taskId][1]
+                self.dictTask[taskId][0] = -1
+                return user
+        return -1
 
-        while -out[0]!=self.dictTask[-out[1]][0]:
-            if not self.heap: 
-                return -1
-            out=heapq.heappop(self.heap)
-        
-        user=self.dictTask[-out[1]][1]
-        self.dictTask[-out[1]][0]=-1
-        
-        return user
-        
-
-
-# Your TaskManager object will be instantiated and called as such:
-# obj = TaskManager(tasks)
-# obj.add(userId,taskId,priority)
-# obj.edit(taskId,newPriority)
-# obj.rmv(taskId)
-# param_4 = obj.execTop()
+    def _rebuild_heap(self):
+        # Remove all stale entries and rebuild heap
+        self.heap = [(-priority, -tid) for tid, (priority, _) in self.dictTask.items() if priority != -1]
+        heapq.heapify(self.heap)
+        self.stale_count = 0
