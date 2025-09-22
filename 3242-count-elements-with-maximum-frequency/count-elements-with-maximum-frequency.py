@@ -7,13 +7,10 @@ class Solution(object):
         counter=Counter(nums)
 
         out=0
-        currentMax=0
+        currentMax=max(counter.values())
 
         for freq in counter.values():
             if freq==currentMax:
                 out+=freq
-            elif freq>currentMax:
-                out=freq
-                currentMax=freq
         
         return out
