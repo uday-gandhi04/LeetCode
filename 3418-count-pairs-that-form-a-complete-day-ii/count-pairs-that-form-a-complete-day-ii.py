@@ -1,27 +1,16 @@
+from collections import Counter
+
 class Solution(object):
     def countCompleteDayPairs(self, hours):
-        """
-        :type hours: List[int]
-        :rtype: int
-        """
+        hours = [h % 24 for h in hours]  # reduce modulo 24
+        count_map = Counter(hours)
+        count = 0
 
-        
-        count=0
-        h={}
-        for i in range(len(hours)):
-            hours[i]=hours[i]%24
+        for h in count_map:
+            if h == 0 or h == 12:
+                # pairs with themselves
+                count += count_map[h] * (count_map[h] - 1) // 2
+            elif h < 12:
+                count += count_map[h] * count_map.get(24 - h, 0)
 
-            h[hours[i]]=h.get(hours[i],0)+1
-
-        for hour in hours:
-            h[hour]-=1
-
-            if hour==0:
-                count+=h[0]
-            elif 24-hour in h:
-                count+=max(h[24-hour],0)
-            
-        
         return count
-        
-        
