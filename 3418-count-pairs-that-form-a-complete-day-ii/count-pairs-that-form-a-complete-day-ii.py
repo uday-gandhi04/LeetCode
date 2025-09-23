@@ -15,13 +15,10 @@ class Solution(object):
         for hour in hours:
             h[hour]-=1
 
-            if h[hour]==0:
-                del h[hour]
-
             if hour==0:
                 count+=h[0]
             elif 24-hour in h:
-                count+=h[24-hour]
+                count+=max(h[24-hour],0)
             
         
         return count
