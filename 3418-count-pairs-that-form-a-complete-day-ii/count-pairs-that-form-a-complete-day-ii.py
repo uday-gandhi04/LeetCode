@@ -7,10 +7,11 @@ class Solution(object):
 
         
         count=0
+        h={}
         for i in range(len(hours)):
             hours[i]=hours[i]%24
-        
-        h=Counter(hours)
+
+            h[hours[i]]=h.get(hours[i],0)+1
 
         for hour in hours:
             h[hour]-=1
