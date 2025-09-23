@@ -11,24 +11,24 @@ class Solution(object):
         :rtype: int
         """
 
-        def helper(arr,root):
+        def helper(maxx,minn,root):
 
             if not root:
                 return 
             
             maxDiff=0
-            if arr:
-                for i in arr:
-                    maxDiff=max(maxDiff,abs(i-root.val))
             
-            arr.append(root.val)
+            maxDiff=max(abs(maxx-root.val),abs(minn-root.val))
             
-            leftmax=helper(arr[:],root.left)
-            rightmax=helper(arr[:],root.right)
+            maxx=max(maxx,root.val)
+            minn=min(minn,root.val)
+            
+            leftmax=helper(maxx,minn,root.left)
+            rightmax=helper(maxx,minn,root.right)
 
             
             return max(maxDiff,leftmax,rightmax)
         
 
-        return helper([],root)
+        return helper(root.val,root.val,root)
         
