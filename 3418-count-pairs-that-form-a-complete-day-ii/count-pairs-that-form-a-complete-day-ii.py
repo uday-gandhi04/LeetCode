@@ -11,8 +11,7 @@ class Solution(object):
             hours[i]=hours[i]%24
         
         h=Counter(hours)
-        print(hours)
-        print(h)
+
         for hour in hours:
             h[hour]-=1
 
