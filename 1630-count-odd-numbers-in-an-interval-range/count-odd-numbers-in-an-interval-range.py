@@ -7,10 +7,6 @@ class Solution(object):
         """
         n= (high-low+1)
 
-        if n%2==0:
+        if n%2==0 or low%2==0:
             return n/2
-        
-        if low%2==0:
-            return n/2
-        
         return n/2+1
