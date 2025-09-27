@@ -16,10 +16,9 @@ class Solution(object):
                 x2,y2=points[j]
                 for k in range(j+1,n):
                     x3,y3=points[k]
-                    area=(1.0/2) * abs(x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2))
+                    area=abs(x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2))
                     out=max(out,area)
         
-        return out
-
+        return out*0.5
 
         
