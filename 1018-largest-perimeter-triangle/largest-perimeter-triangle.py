@@ -7,12 +7,9 @@ class Solution(object):
         nums.sort(reverse=True)
 
         n=len(nums)
-        area=0
 
         for i in range(n-2):
-            a=nums[i]
-            b=nums[i+1]
-            c=nums[i+2]
+            a,b,c=nums[i],nums[i+1],nums[i+2]
             if b+c>a:
                 return a+b+c
         return 0
