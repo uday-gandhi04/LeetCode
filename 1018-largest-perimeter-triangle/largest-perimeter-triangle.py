@@ -13,7 +13,7 @@ class Solution(object):
             a=nums[i]
             b=nums[i+1]
             c=nums[i+2]
-            if a+b>c and a+c>b and b+c>a:
+            if b+c>a:
                 return a+b+c
         return 0
                     
