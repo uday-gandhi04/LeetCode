@@ -7,12 +7,10 @@ class Solution(object):
         """
         out=numBottles
 
-        nb=numBottles
-
-        while nb>=numExchange:
-            ex=nb/numExchange
+        while numBottles>=numExchange:
+            ex=numBottles/numExchange
             out+=ex
-            nb=(nb-ex*numExchange)+ex
+            numBottles=(numBottles-ex*numExchange)+ex
 
         return out
             
