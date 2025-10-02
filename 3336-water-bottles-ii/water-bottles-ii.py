@@ -6,17 +6,13 @@ class Solution(object):
         :rtype: int
         """
 
-        fullBottles=numBottles
-        mt=0
-        out=0
-
-        while fullBottles:
-            mt+=fullBottles
-            out+=fullBottles
-            fullBottles=0
-            if mt>=numExchange:
-                mt-=numExchange
-                fullBottles=1
-                numExchange+=1
-        return out
-        
+        res = 0
+        while True:
+            if numBottles >= numExchange:
+                res += numExchange
+                numBottles -= numExchange - 1
+                numExchange += 1
+            else:
+                res += numBottles
+                break
+        return res
