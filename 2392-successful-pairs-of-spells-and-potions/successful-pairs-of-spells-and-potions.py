@@ -17,10 +17,9 @@ class Solution(object):
 
             idx=bisect.bisect_left(potions,target)
 
-            if idx <n and potions[idx]>=target:
-                pairs.append(n-idx)
-            else:
-                pairs.append(0)
+            
+            pairs.append(n-idx)
+            
         
         return pairs
         
