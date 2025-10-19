@@ -1,5 +1,4 @@
-# Write your MySQL query statement below
 select b.id
-from Weather as a join Weather as b 
-on b.recordDate=a.recordDate + INTERVAL 1 DAY 
-where a.temperature<b.temperature
+from weather a left join weather b
+on a.recordDate+interval 1 day = b.recordDate
+where a.temperature < b.temperature
