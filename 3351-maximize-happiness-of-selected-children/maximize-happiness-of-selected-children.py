@@ -5,14 +5,11 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
-        heap=[]
-
-        for h in happiness:
-            heapq.heappush(heap,-h)
-
         out=0
 
+        happiness.sort(reverse=True)
+
         for i in range(k):
-            out+=max((-heapq.heappop(heap))-i,0)
+            out+=max(happiness[i]-i,0)
         
         return out
