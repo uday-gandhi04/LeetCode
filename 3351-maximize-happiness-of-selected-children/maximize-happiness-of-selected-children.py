@@ -10,6 +10,9 @@ class Solution(object):
         happiness.sort(reverse=True)
 
         for i in range(k):
-            out+=max(happiness[i]-i,0)
+            if happiness[i]-i>0:
+                out+=happiness[i]-i
+            else:
+                break
         
         return out
