@@ -7,21 +7,20 @@ class Solution(object):
 
         out=0
         count=0
-        arr=[]
+        minn=float('inf')
 
         for i in range(len(matrix)):
             for j in range(len(matrix[0])):
                 if matrix[i][j]<=0:
-                    arr.append(-matrix[i][j])
+                    out-=matrix[i][j]
                     count+=1
+                    minn=min(minn,-matrix[i][j])
                 else:
-                    arr.append(matrix[i][j])
+                    out+=matrix[i][j]
+                    minn=min(minn,matrix[i][j])
         
-        if count%2==0:
-            out+=sum(arr)
-        else:
-            out+=sum(arr)
-            out-=(2*min(arr))
+        if count%2!=0:    
+            out-=(2*minn)
         
         return out
             
