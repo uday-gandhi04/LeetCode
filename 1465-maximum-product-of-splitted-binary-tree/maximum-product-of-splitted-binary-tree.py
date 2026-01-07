@@ -21,11 +21,6 @@ class Solution(object):
             return s
         
         total=summ(root)
-        maxx=0
-        for o in out:
-            maxx=max(maxx,(total-o)*o)
-        
-        return maxx%(10**9+7)
-
+        return max(x * (total - x) for x in out) % (10**9 + 7)
 
         
