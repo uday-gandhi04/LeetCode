@@ -11,32 +11,25 @@ class Solution(object):
         :rtype: int
         """
 
-        out=[0]
+        out=[]
         total=[0]
 
         def summ(root):
             
             if not root:
                 return 0
-            return root.val+summ(root.left)+summ(root.right)
+            s=root.val+summ(root.left)+summ(root.right)
+            out.append(s)
+            return s
         
-        total[0]=summ(root)
-        def dfs(root):
-            if not root:
-                return 0
-            left=dfs(root.left)
+        total=summ(root)
 
-            out[0]=max(out[0],(total[0]-left)*left)
+        maxx=0
 
-            right=dfs(root.right)
-
-            out[0]=max(out[0],(total[0]-right)*right)
-
-            return left+root.val+right
-
-        dfs(root)
-
-        return out[0]%(10**9 + 7)
+        for o in out:
+            maxx=max(maxx,(total-o)*o)
+        
+        return maxx%(10**9+7)
 
 
         
