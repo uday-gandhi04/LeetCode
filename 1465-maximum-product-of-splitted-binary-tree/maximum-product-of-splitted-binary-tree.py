@@ -12,8 +12,6 @@ class Solution(object):
         """
 
         out=[]
-        total=[0]
-
         def summ(root):
             
             if not root:
@@ -23,9 +21,7 @@ class Solution(object):
             return s
         
         total=summ(root)
-
         maxx=0
-
         for o in out:
             maxx=max(maxx,(total-o)*o)
         
