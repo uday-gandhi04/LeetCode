@@ -6,12 +6,10 @@ class Solution(object):
         """
         
         out=nums[0]
-        dist=float('inf')
-
+        
         for num in nums:
-            if abs(num)<dist:
+            if abs(num)<abs(out):
                 out=num
-                dist=abs(num)
-            elif abs(num)==dist:
-                out=max(out,num)
+            elif abs(num)==abs(out) and num>out:
+                out=num
         return out
