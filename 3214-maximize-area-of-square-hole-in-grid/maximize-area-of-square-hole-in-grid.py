@@ -11,38 +11,31 @@ class Solution(object):
         hBars.sort()
         vBars.sort()
 
-        h=[hBars[0],hBars[0]]
-        v=[vBars[0],vBars[0]]
-        x,y=h
+        hdiff=0
+        vdiff=0
+        diff=0
 
         for i in range(1,len(hBars)):
             if hBars[i]-hBars[i-1]==1:
-                y=hBars[i]
+                diff+=1
             else:
-                if y-x>h[1]-h[0]:
-                    h=x,y
-                x=hBars[i]
-                y=hBars[i]
+                hdiff=max(hdiff,diff)
+                diff=0
         
-        if y-x>h[1]-h[0]:
-            h=x,y
-
-        x,y=v
+        hdiff=max(hdiff,diff)
+        diff=0
         for i in range(1,len(vBars)):
             if vBars[i]-vBars[i-1]==1:
-                y=vBars[i]
+                diff+=1
             else:
-                if y-x>v[1]-v[0]:
-                    v=x,y
-                x=vBars[i]
-                y=vBars[i]
+                vdiff=max(vdiff,diff)
+                diff=0
         
-        if y-x>v[1]-v[0]:
-            v=x,y
+        vdiff=max(vdiff,diff)
 
         
-        s=min(h[1] - h[0] + 2, v[1] - v[0] + 2)
-        return s**2
+        s=min(hdiff,vdiff)
+        return (s+2)**2
 
 
         
