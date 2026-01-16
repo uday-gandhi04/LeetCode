@@ -21,12 +21,9 @@ class Solution(object):
             for j in range(i):
                 vset.add(abs(vFences[i]-vFences[j]))
         
-        out=-1
-
-        for s in hset:
-            if s in vset:
-                out=max(out,s*s)
-
-        if out==-1:
-            return out
-        return out%(10**9+7)
+        common = hset & vset
+        if not common:
+            return -1
+        
+        side = max(common)
+        return (side * side)%(10**9+7)
