@@ -10,16 +10,8 @@ class Solution(object):
 
         hFences = sorted(hFences + [1, m])
         vFences = sorted(vFences + [1, n])
-        hset=set()
-        vset=set()
-
-        for i in range(len(hFences)):
-            for j in range(i):
-                hset.add(hFences[i]-hFences[j])
-        
-        for i in range(len(vFences)):
-            for j in range(i):
-                vset.add(vFences[i]-vFences[j])
+        hset=set(hFences[i]-hFences[j] for i in range(len(hFences)) for j in range(i))
+        vset=set(vFences[i]-vFences[j] for i in range(len(vFences)) for j in range(i))
         
         common = hset & vset
         if not common:
