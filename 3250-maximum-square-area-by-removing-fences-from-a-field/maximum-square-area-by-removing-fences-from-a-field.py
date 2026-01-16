@@ -8,18 +8,18 @@ class Solution(object):
         :rtype: int
         """
 
-        hFences=[1]+hFences+[m]
-        vFences=[1]+vFences+[n]
+        hFences = sorted(hFences + [1, m])
+        vFences = sorted(vFences + [1, n])
         hset=set()
         vset=set()
 
         for i in range(len(hFences)):
             for j in range(i):
-                hset.add(abs(hFences[i]-hFences[j]))
+                hset.add(hFences[i]-hFences[j])
         
         for i in range(len(vFences)):
             for j in range(i):
-                vset.add(abs(vFences[i]-vFences[j]))
+                vset.add(vFences[i]-vFences[j])
         
         common = hset & vset
         if not common:
