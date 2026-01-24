@@ -8,7 +8,6 @@ class Solution(object):
         n=len(nums)
         out=float('-inf')
 
-        print(nums)
         for i in range(0,n//2):
             out=max(out,nums[i]+nums[-i-1])
         
